@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mariana & Juan Carlos — Nos Casamos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF1E7;
+    --cream-deep:#F3E6D6;
+    --blue-dust:#8DACBF;
+    --blue-light:#B7CEDD;
+    --rose-dust:#DBABA1;
+    --pink-soft:#F8D8D2;
+    --gold:#B8934F;
+    --gold-soft:#D8BC85;
+    --ink:#4A5A63;
+    --ink-deep:#3A4750;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink-deep);
+    font-family:'EB Garamond', serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:'Cormorant Garamond', serif;}
+
+  /* subtle paper texture via layered radial gradients */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(141,172,191,0.10), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(219,171,161,0.12), transparent 45%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .page{
+    max-width:520px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+  }
+
+  section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px 32px;
+    position:relative;
+  }
+
+  /* ---------- ornamental frame lines ---------- */
+  .frame{
+    position:absolute;
+    inset:18px;
+    border:1px solid var(--gold-soft);
+    pointer-events:none;
+    opacity:.7;
+  }
+  .corner{
+    position:absolute;
+    width:34px; height:34px;
+    border-color:var(--gold);
+    opacity:0;
+    transform:scale(.6);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .corner.show{opacity:1; transform:scale(1);}
+  .corner.tl{top:8px; left:8px; border-top:1.5px solid var(--gold); border-left:1.5px solid var(--gold);}
+  .corner.tr{top:8px; right:8px; border-top:1.5px solid var(--gold); border-right:1.5px solid var(--gold);}
+  .corner.bl{bottom:8px; left:8px; border-bottom:1.5px solid var(--gold); border-left:1.5px solid var(--gold);}
+  .corner.br{bottom:8px; right:8px; border-bottom:1.5px solid var(--gold); border-right:1.5px solid var(--gold);}
+
+  .hairline{
+    width:64px; height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin:22px auto;
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 1.1s ease, transform 1.1s ease;
+  }
+  .reveal.show{opacity:1; transform:translateY(0);}
+
+  /* ---------- HERO ---------- */
+  .hero{background:linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);}
+  .eyebrow{
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    font-size:11px;
+    color:var(--blue-dust);
+    font-family:'EB Garamond', serif;
+    margin-bottom:18px;
+  }
+  .names{
+    font-size:clamp(48px, 12vw, 72px);
+    font-weight:500;
+    line-height:1.08;
+    color:var(--ink-deep);
+  }
+  .amp{
+    display:block;
+    font-style:italic;
+    font-weight:400;
+    color:var(--gold);
+    font-size:.5em;
+    margin:6px 0;
+  }
+  .nos-casamos{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:22px;
+    color:var(--ink);
+    letter-spacing:.04em;
+    margin-top:6px;
+  }
+  .scroll-hint{
+    position:absolute;
+    bottom:34px;
+    font-size:11px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--blue-dust);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+  }
+  .scroll-hint .line{
+    width:1px; height:28px;
+    background:var(--gold-soft);
+    animation:pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:.3; transform:scaleY(.7);}
+    50%{opacity:1; transform:scaleY(1);}
+  }
+
+  /* ---------- FECHA / COUNTDOWN ---------- */
+  .fecha{background:var(--cream-deep);}
+  .fecha-label{
+    font-size:12px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--rose-dust);
+    margin-bottom:14px;
+  }
+  .fecha-dia{
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(30px,7vw,40px);
+    font-weight:500;
+    color:var(--ink-deep);
+  }
+  .fecha-hora{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--blue-dust);
+    margin-top:8px;
+  }
+
+  .countdown{
+    display:flex;
+    gap:20px;
+    margin-top:40px;
+  }
+  .cd-item{display:flex; flex-direction:column; align-items:center;}
+  .cd-num{
+    font-family:'Cormorant Garamond', serif;
+    font-size:34px;
+    color:var(--gold);
+    min-width:52px;
+    font-variant-numeric:tabular-nums;
+  }
+  .cd-label{
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin-top:4px;
+  }
+
+  /* ---------- LUGAR ---------- */
+  .lugar{background:linear-gradient(180deg, var(--cream-deep) 0%, var(--cream) 100%);}
+  .lugar-label{
+    font-size:12px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--blue-dust);
+    margin-bottom:16px;
+  }
+  .lugar-nombre{
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(28px,6vw,36px);
+    color:var(--ink-deep);
+    font-weight:500;
+  }
+  .lugar-detalle{
+    font-size:17px;
+    color:var(--ink);
+    margin-top:8px;
+    font-style:italic;
+  }
+  .map-btn{
+    margin-top:34px;
+    display:inline-block;
+    padding:13px 34px;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    text-decoration:none;
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    font-family:'EB Garamond', serif;
+    transition:background .4s ease, color .4s ease;
+  }
+  .map-btn:hover{background:var(--gold); color:var(--cream);}
+
+  /* ---------- RSVP ---------- */
+  .rsvp{background:var(--cream);}
+  .rsvp-msg{
+    font-family:'Cormorant Garamond', serif;
+    font-size:24px;
+    font-style:italic;
+    color:var(--ink-deep);
+    max-width:340px;
+    line-height:1.5;
+  }
+  .rsvp-btn{
+    margin-top:32px;
+    padding:15px 40px;
+    background:var(--blue-dust);
+    color:var(--cream);
+    border:none;
+    font-family:'EB Garamond', serif;
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+    transition:background .4s ease, transform .3s ease;
+  }
+  .rsvp-btn:hover{background:var(--rose-dust); transform:translateY(-2px);}
+
+  footer{
+    text-align:center;
+    padding:36px 20px 48px;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--blue-dust);
+  }
+
+  @media (max-width:400px){
+    .countdown{gap:12px;}
+    .cd-num{font-size:28px; min-width:42px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="frame">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+    </div>
+    <div class="eyebrow reveal">Nuestra boda</div>
+    <h1 class="names display reveal">
+      Mariana
+      <span class="amp">&amp;</span>
+      Juan Carlos
+    </h1>
+    <div class="hairline reveal"></div>
+    <p class="nos-casamos reveal">nos casamos</p>
+
+    <div class="scroll-hint">
+      <span>desliza</span>
+      <span class="line"></span>
+    </div>
+  </section>
+
+  <!-- FECHA -->
+  <section class="fecha" id="fecha">
+    <p class="fecha-label reveal">Guarda la fecha</p>
+    <p class="fecha-dia display reveal">Domingo 27 de diciembre de 2026</p>
+    <p class="fecha-hora reveal">2:30 p.m.</p>
+
+    <div class="countdown reveal" id="countdown">
+      <div class="cd-item"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Días</span></div>
+      <div class="cd-item"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Horas</span></div>
+      <div class="cd-item"><span class="cd-num" id="cd-min">00</span><span class="cd-label">Min</span></div>
+      <div class="cd-item"><span class="cd-num" id="cd-sec">00</span><span class="cd-label">Seg</span></div>
+    </div>
+  </section>
+
+  <!-- LUGAR -->
+  <section class="lugar" id="lugar">
+    <p class="lugar-label reveal">Nos encontramos en</p>
+    <p class="lugar-nombre display reveal">Villa Lagos</p>
+    <p class="lugar-detalle reveal">La Garita, Alajuela</p>
+    <a class="map-btn reveal"
+       href="https://www.google.com/maps/search/?api=1&query=Villa+Lagos+La+Garita+Alajuela"
+       target="_blank" rel="noopener">Ver ubicación</a>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp" id="rsvp">
+    <p class="rsvp-msg reveal">Será un honor contar con tu presencia<br>en este día tan especial para nosotros.</p>
+    <a class="rsvp-btn reveal"
+       href="mailto:confirmaciones@correo.com?subject=Confirmación%20de%20asistencia%20-%20Boda%20Mariana%20%26%20Juan%20Carlos&body=Nombre%20completo%3A%0AN%C3%BAmero%20de%20invitados%3A%0A"
+       >Confirmar asistencia</a>
+    <footer class="reveal">Mariana &amp; Juan Carlos · 27.12.2026</footer>
+  </section>
+
+</div>
+
+<script>
+  // ---- Reveal on scroll ----
+  const revealEls = document.querySelectorAll('.reveal, .corner');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); }
+    });
+  }, { threshold:0.25 });
+  revealEls.forEach(el=>io.observe(el));
+
+  // ---- Countdown ----
+  const target = new Date('2026-12-27T15:00:00-06:00').getTime();
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    const now = Date.now();
+    const diff = Math.max(0, target - now);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent = pad(days);
+    document.getElementById('cd-hours').textContent = pad(hours);
+    document.getElementById('cd-min').textContent = pad(mins);
+    document.getElementById('cd-sec').textContent = pad(secs);
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
