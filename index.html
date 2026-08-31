@@ -150,6 +150,90 @@
     50%{opacity:1; transform:scaleY(1);}
   }
 
+  /* ---------- FOTOS (marco vintage sepia/dorado) ---------- */
+  .photo-wrap{
+    margin-top:44px;
+    width:100%;
+    max-width:300px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .photo-frame{
+    position:relative;
+    width:100%;
+    padding:10px;
+    background:var(--cream);
+    border:1px solid var(--gold-soft);
+    box-shadow:0 10px 30px -12px rgba(58,71,80,0.25);
+  }
+  .photo-frame::before{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:1px solid var(--gold);
+    opacity:.55;
+    pointer-events:none;
+    z-index:2;
+  }
+  .photo-frame .photo-inner{
+    position:relative;
+    overflow:hidden;
+  }
+  .photo-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    filter:sepia(.42) saturate(1.18) contrast(1.04) brightness(1.04) hue-rotate(-6deg);
+  }
+  .photo-frame .photo-inner::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(160deg, rgba(184,147,79,0.16), rgba(219,171,161,0.10) 55%, rgba(141,172,191,0.14));
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  .photo-caption{
+    margin-top:12px;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:14px;
+    letter-spacing:.03em;
+    color:var(--ink);
+  }
+
+  /* ---------- INVITADOS (personalizado) ---------- */
+  .invitados{
+    padding-top:0;
+    padding-bottom:8px;
+  }
+  .invitados-label{
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--rose-dust);
+    margin-bottom:16px;
+  }
+  .invitados-lista{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .invitados-lista li{
+    font-family:'Cormorant Garamond', serif;
+    font-size:22px;
+    color:var(--ink-deep);
+  }
+  .invitados-generico{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--ink);
+    max-width:300px;
+  }
+
   /* ---------- FECHA / COUNTDOWN ---------- */
   .fecha{background:var(--cream-deep);}
   .fecha-label{
@@ -293,9 +377,33 @@
     <div class="hairline reveal"></div>
     <p class="nos-casamos reveal">nos casamos</p>
 
+    <div class="photo-wrap reveal">
+      <div class="photo-frame">
+        <div class="photo-inner"><img src="images/hero-machu-picchu.jpg" alt="Mariana y Juan Carlos en Machu Picchu"></div>
+      </div>
+      <p class="photo-caption">Machu Picchu, Perú</p>
+    </div>
+
     <div class="scroll-hint">
       <span>desliza</span>
       <span class="line"></span>
+    </div>
+  </section>
+
+  <!-- INVITADOS -->
+  <section class="invitados" id="invitados">
+    <p class="invitados-label reveal">Con mucho cariño invitamos a</p>
+    <ul class="invitados-lista" id="invitados-lista"></ul>
+    <p class="invitados-generico reveal" id="invitados-generico" style="display:none;">
+      Nos encantaría contar con tu presencia en este día tan especial para nosotros.
+    </p>
+    <div class="hairline reveal"></div>
+
+    <div class="photo-wrap reveal">
+      <div class="photo-frame">
+        <div class="photo-inner"><img src="images/invitados-rainbow-mountain.jpg" alt="Mariana y Juan Carlos en la Montaña de Colores"></div>
+      </div>
+      <p class="photo-caption">Vinicunca, Cusco</p>
     </div>
   </section>
 
@@ -303,13 +411,20 @@
   <section class="fecha" id="fecha">
     <p class="fecha-label reveal">Guarda la fecha</p>
     <p class="fecha-dia display reveal">Domingo 27 de diciembre de 2026</p>
-    <p class="fecha-hora reveal">2:30 p.m.</p>
+    <p class="fecha-hora reveal">3:00 p.m.</p>
 
     <div class="countdown reveal" id="countdown">
       <div class="cd-item"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Días</span></div>
       <div class="cd-item"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Horas</span></div>
       <div class="cd-item"><span class="cd-num" id="cd-min">00</span><span class="cd-label">Min</span></div>
       <div class="cd-item"><span class="cd-num" id="cd-sec">00</span><span class="cd-label">Seg</span></div>
+    </div>
+
+    <div class="photo-wrap reveal">
+      <div class="photo-frame">
+        <div class="photo-inner"><img src="images/fecha-atardecer-lago.jpg" alt="Mariana y Juan Carlos al atardecer en el lago"></div>
+      </div>
+      <p class="photo-caption">Atardecer en el lago</p>
     </div>
   </section>
 
@@ -321,6 +436,13 @@
     <a class="map-btn reveal"
        href="https://www.google.com/maps/search/?api=1&query=Villa+Lagos+La+Garita+Alajuela"
        target="_blank" rel="noopener">Ver ubicación</a>
+
+    <div class="photo-wrap reveal">
+      <div class="photo-frame">
+        <div class="photo-inner"><img src="images/lugar-globo-aerostatico.jpg" alt="Mariana y Juan Carlos en globo aerostático"></div>
+      </div>
+      <p class="photo-caption">Vuelo en globo aerostático</p>
+    </div>
   </section>
 
   <!-- RSVP -->
@@ -329,12 +451,77 @@
     <a class="rsvp-btn reveal"
        href="mailto:confirmaciones@correo.com?subject=Confirmación%20de%20asistencia%20-%20Boda%20Mariana%20%26%20Juan%20Carlos&body=Nombre%20completo%3A%0AN%C3%BAmero%20de%20invitados%3A%0A"
        >Confirmar asistencia</a>
+
+    <div class="photo-wrap reveal">
+      <div class="photo-frame">
+        <div class="photo-inner"><img src="images/rsvp-guatemala.jpg" alt="Mariana y Juan Carlos en Guatemala"></div>
+      </div>
+      <p class="photo-caption">Antigua, Guatemala</p>
+    </div>
+
     <footer class="reveal">Mariana &amp; Juan Carlos · 27.12.2026</footer>
   </section>
 
 </div>
 
 <script>
+  // ==========================================================
+  // LISTA DE INVITADOS
+  // Cada familia/grupo tiene un "id" (usado en la URL como ?id=xxx)
+  // y un arreglo "names" con los nombres individuales invitados.
+  // Para agregar más familias, copia un bloque y cambia los datos.
+  // El link que le compartes a cada familia sería, por ejemplo:
+  //   https://tusitio.github.io/boda/?id=perez
+  // ==========================================================
+  const GUESTS = {
+    "hernandez-fernandez": { names: ["Marcia Fernádez Escamilla", "Greivin Hernández Segura", "Andrey Hernández Fernández", "Abigail Hernández Fernández"] },
+    "fernandez-salazar": { names: ["Jenny Salazar Méndez", "Lucia Fernández Salazar", "Marcelo Fernádez Escamilla", "Julian Fernández Salazar"] },
+    "escamilla-oporta": { names: ["Jackson Espinoza Escamilla", "Elena Escamilla Oporta", "Luz Escamilla Oporta"] },
+    "mata-navarro": { names: ["Mayra Mata Navarro"] },
+    "fernandez-escamilla": { names: ["Leila Escamilla Oporta", "Manuel Fernádez Cordero"] },
+    "salazar-escamilla": { names: ["Wilson Salazár Arias", "Laura Salazár Escamilla"] },
+    "valderramos-salazar": { names: ["Silvia Salazár Escamilla", "Gerald Valderramos", "Felipe Valderramos Escamilla"] },
+    "cordero": { names: ["Dolares Cordero"] },
+    "bolanos-garbanzo": { names: ["Natalia Garbanzo Morales", "Daniel Bolaños Miranda"] },
+    "alvarez-santamaria": { names: ["Andrea Alvarez Santamaría"] },
+    "masis-soto": { names: ["Priscilla Masis Soto"] },
+    "picado-chacon": { names: ["Gloriela Picado Chacón"] },
+    "carolina": { names: ["Carolina"] },
+    "vanegas": { names: ["Raquel Vanegas"] },
+    "jimenez-rodriguez": { names: ["Melisa Jiménez Rodrígez"] },
+    "aragon-pena": { names: ["Arelly Aragón Peña"] },
+    "moreno-garro": { names: ["Francisco Moreno Mena", "Francisco Moreno Garro", "Marlene Garro Fallas", "Diego Moreno Garro", "Diego Moreno Mora", "Mateo Moreno Mora"] },
+    "crawford-daniels": { names: ["Yorlenny Crawford Daniels"] },
+    "garro-fallas": { names: ["Cristina Díaz Garro", "Rosibel Garro Fallas", "Mayra Garro Fallas", "Haydee Fallas Arias", "Delio Garro Fallas"] },
+    "rojas-garro": { names: ["Ines Garro Astua", "Carlos Rojas"] },
+    "garro-portilla": { names: ["Felanjo Garro Camacho", "Sonia Portilla"] },
+    "barboza-brenes": { names: ["Pedro Barboza", "Marilyn Brenes Moreno"] },
+    "brenes-moreno": { names: ["Johana Brenes Moreno", "Maureen Brenes Moreno", "Orfilia Moreno Mena"] },
+    "arroyo-moreno": { names: ["Krissia Moreno Mena", "Luis Arroyo Ortiz"] },
+    "valverde-moreno": { names: ["Javier Valverde Moreno", "Elidia Moreno Mena", "Andres Valverde Moreno", "Leonardo Valverde Moreno"] },
+    "segura-moreno": { names: ["Ronald Segura", "Carmen Moreno Mena", "Anthony Segura Moreno"] }
+  };
+
+  // ---- Personalización por parámetro ?id= ----
+  (function personalize(){
+    const params = new URLSearchParams(window.location.search);
+    const id = (params.get('id') || '').trim().toLowerCase();
+    const listEl = document.getElementById('invitados-lista');
+    const genericEl = document.getElementById('invitados-generico');
+    const guest = GUESTS[id];
+
+    if (guest && guest.names && guest.names.length){
+      guest.names.forEach(name=>{
+        const li = document.createElement('li');
+        li.className = 'reveal';
+        li.textContent = name;
+        listEl.appendChild(li);
+      });
+    } else {
+      genericEl.style.display = 'block';
+    }
+  })();
+
   // ---- Reveal on scroll ----
   const revealEls = document.querySelectorAll('.reveal, .corner');
   const io = new IntersectionObserver((entries)=>{
