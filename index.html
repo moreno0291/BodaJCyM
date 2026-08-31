@@ -195,8 +195,8 @@
   }
   .envelope{
     position:relative;
-    width:230px;
-    height:158px;
+    width:min(88vw, 320px);
+    aspect-ratio:230 / 158;
     transition:transform .5s ease;
   }
   .envelope-outer:active .envelope{ transform:scale(.97); }
@@ -251,7 +251,7 @@
   .envelope-seal{
     position:absolute;
     left:50%; top:56%;
-    width:46px; height:46px;
+    width:min(14vw, 60px); height:min(14vw, 60px);
     transform:translate(-50%,-50%) scale(1) rotate(0deg);
     border-radius:50%;
     background:radial-gradient(circle at 35% 30%, var(--gold-soft), var(--gold) 65%, #93732E 100%);
@@ -261,7 +261,7 @@
     justify-content:center;
     font-family:'Cormorant Garamond', serif;
     font-style:italic;
-    font-size:16px;
+    font-size:min(4vw, 21px);
     color:var(--cream);
     z-index:4;
     transition:transform .45s ease, opacity .4s ease;
