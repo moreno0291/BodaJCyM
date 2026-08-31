@@ -306,6 +306,92 @@
     animation:pulse 2.2s ease-in-out infinite;
   }
 
+  /* ---------- HERO: composición estilo "Nuestra Boda" ---------- */
+  .hero-eyebrow-names{
+    font-family:'EB Garamond', serif;
+    font-size:13px;
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    color:var(--gold-text);
+    margin-bottom:30px;
+  }
+
+  .hero-photo-box{
+    position:relative;
+    width:min(72vw, 260px);
+    aspect-ratio:3/4;
+    margin:0 auto;
+  }
+  .hero-photo-box .photo-clip{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    border-radius:6px;
+    box-shadow:0 16px 34px -16px rgba(58,71,80,0.4);
+  }
+  .hero-photo-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:sepia(.42) saturate(1.18) contrast(1.04) brightness(1.04) hue-rotate(-6deg);
+  }
+  .hero-photo-box .photo-clip::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(160deg, rgba(184,147,79,0.16), rgba(219,171,161,0.10) 55%, rgba(141,172,191,0.14));
+    mix-blend-mode:multiply;
+  }
+  .hero-geo-frame{
+    position:absolute;
+    inset:-14%;
+    pointer-events:none;
+    overflow:visible;
+  }
+  .hero-geo-frame path, .hero-geo-frame line{
+    fill:none;
+    stroke:var(--gold);
+    stroke-width:.5;
+    opacity:.85;
+  }
+  .hero-geo-frame circle{
+    fill:var(--gold);
+    opacity:.85;
+  }
+
+  .hero-script{
+    font-family:'Mrs Saint Delafield', cursive;
+    font-size:clamp(46px, 13vw, 64px);
+    color:var(--gold-text);
+    margin-top:34px;
+    line-height:1;
+  }
+  .hero-date-small{
+    font-family:'EB Garamond', serif;
+    font-size:13px;
+    letter-spacing:.3em;
+    color:var(--ink);
+    margin-top:14px;
+  }
+
+  /* ---------- FLORES ACUARELA (esquinas de sección) ---------- */
+  section{ overflow:visible; }
+  .floral-corner{
+    position:absolute;
+    width:clamp(70px, 20vw, 110px);
+    height:clamp(70px, 20vw, 110px);
+    pointer-events:none;
+    z-index:0;
+  }
+  .floral-tr{ top:6px; right:-6px; }
+  .floral-bl{ bottom:6px; left:-6px; transform:rotate(180deg); }
+  .hero-eyebrow-names, .hero-photo-box, .hero-script, .hero-date-small,
+  .fecha-label, .fecha-dia, .fecha-hora, .countdown, .lugar-label, .lugar-nombre,
+  .lugar-detalle, .map-btn, .rsvp-msg, .rsvp-btn, .envelope-guests{
+    position:relative;
+    z-index:1;
+  }
+
   /* ---------- FOTOS (marco vintage sepia/dorado) ---------- */
   .photo-wrap{
     margin-top:44px;
@@ -414,10 +500,10 @@
     margin-bottom:16px;
   }
   .lugar-nombre{
-    font-family:'Cormorant Garamond', serif;
-    font-size:clamp(28px,6vw,36px);
+    font-family:'Mrs Saint Delafield', cursive;
+    font-size:clamp(40px,9vw,52px);
     color:var(--gold-text);
-    font-weight:500;
+    font-weight:400;
   }
   .lugar-detalle{
     font-size:17px;
@@ -484,6 +570,42 @@
 </head>
 <body>
 
+<!-- Símbolo reutilizable: ramillete acuarela original (dibujado a mano en SVG) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="floral-spray" viewBox="0 0 130 130">
+      <g filter="url(#wc-blur)">
+        <ellipse cx="30" cy="34" rx="16" ry="12" fill="var(--rose-dust)" opacity=".55" transform="rotate(-18 30 34)"/>
+        <ellipse cx="44" cy="22" rx="13" ry="10" fill="var(--pink-soft)" opacity=".6" transform="rotate(12 44 22)"/>
+        <ellipse cx="20" cy="18" rx="11" ry="8" fill="var(--pink-soft)" opacity=".55" transform="rotate(-30 20 18)"/>
+        <ellipse cx="16" cy="46" rx="10" ry="14" fill="var(--blue-light)" opacity=".5" transform="rotate(20 16 46)"/>
+        <ellipse cx="38" cy="52" rx="9" ry="12" fill="var(--blue-dust)" opacity=".42" transform="rotate(-10 38 52)"/>
+        <ellipse cx="8" cy="28" rx="8" ry="6" fill="var(--blue-light)" opacity=".45" transform="rotate(40 8 28)"/>
+      </g>
+      <g stroke="var(--gold)" stroke-width=".7" fill="none" opacity=".8">
+        <path d="M12 60 C 16 46, 14 30, 26 14"/>
+        <path d="M26 14 C 30 10, 36 9, 40 6"/>
+        <path d="M18 40 C 12 38, 8 34, 4 30"/>
+        <path d="M22 30 C 28 28, 32 24, 34 18"/>
+      </g>
+      <g fill="var(--gold-soft)" opacity=".85">
+        <ellipse cx="40" cy="7" rx="3.2" ry="1.5" transform="rotate(35 40 7)"/>
+        <ellipse cx="6" cy="30" rx="3" ry="1.4" transform="rotate(-25 6 30)"/>
+        <ellipse cx="14" cy="42" rx="3" ry="1.4" transform="rotate(60 14 42)"/>
+        <ellipse cx="30" cy="20" rx="2.6" ry="1.2" transform="rotate(10 30 20)"/>
+      </g>
+      <g fill="var(--gold)" opacity=".9">
+        <circle cx="30" cy="34" r="1.6"/>
+        <circle cx="44" cy="22" r="1.4"/>
+        <circle cx="20" cy="18" r="1.2"/>
+      </g>
+    </symbol>
+    <filter id="wc-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.6"/>
+    </filter>
+  </defs>
+</svg>
+
 <!-- SOBRE DE APERTURA -->
 <div class="envelope-screen" id="envelope-screen">
   <p class="envelope-names">Mariana<span class="amp-sm">&amp;</span>Juan Carlos</p>
@@ -511,26 +633,28 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="frame">
-      <div class="corner tl"></div>
-      <div class="corner tr"></div>
-      <div class="corner bl"></div>
-      <div class="corner br"></div>
-    </div>
-    <div class="eyebrow reveal">Nuestra boda</div>
-    <h1 class="names display reveal">
-      Mariana
-      <span class="amp">&amp;</span>
-      Juan Carlos
-    </h1>
-    <div class="hairline reveal"></div>
-    <p class="nos-casamos reveal">nos casamos</p>
+    <svg class="floral-corner floral-tr"><use href="#floral-spray"/></svg>
+    <svg class="floral-corner floral-bl"><use href="#floral-spray"/></svg>
+    <p class="hero-eyebrow-names reveal">Mariana y Juan Carlos</p>
 
-    <div class="photo-wrap reveal">
-      <div class="photo-frame">
-        <div class="photo-inner"><img src="images/hero-machu-picchu.jpg" alt="Mariana y Juan Carlos en Machu Picchu"></div>
+    <div class="hero-photo-box reveal">
+      <svg class="hero-geo-frame" viewBox="0 0 100 133" preserveAspectRatio="none">
+        <path d="M50 0 L100 40 L84 133 L16 133 L0 40 Z" />
+        <path d="M50 14 L88 44 L75 121 L25 121 L12 44 Z" />
+        <line x1="0" y1="40" x2="-14" y2="30" />
+        <line x1="-14" y1="30" x2="-14" y2="12" />
+        <circle cx="-14" cy="12" r="1.4" />
+        <line x1="100" y1="93" x2="114" y2="103" />
+        <line x1="114" y1="103" x2="114" y2="121" />
+        <circle cx="114" cy="121" r="1.4" />
+      </svg>
+      <div class="photo-clip">
+        <img src="images/hero-machu-picchu.jpg" alt="Mariana y Juan Carlos en Machu Picchu">
       </div>
     </div>
+
+    <p class="hero-script reveal">Nos Casamos</p>
+    <p class="hero-date-small reveal">27 . 12 . 2026</p>
 
     <div class="scroll-hint">
       <span>desliza</span>
@@ -540,6 +664,8 @@
 
   <!-- FECHA -->
   <section class="fecha" id="fecha">
+    <svg class="floral-corner floral-tr"><use href="#floral-spray"/></svg>
+    <svg class="floral-corner floral-bl"><use href="#floral-spray"/></svg>
     <p class="fecha-label reveal">Guarda la fecha</p>
     <p class="fecha-dia display reveal">Domingo 27 de diciembre de 2026</p>
     <p class="fecha-hora reveal">3:00 p.m.</p>
@@ -554,6 +680,8 @@
 
   <!-- LUGAR -->
   <section class="lugar" id="lugar">
+    <svg class="floral-corner floral-tr"><use href="#floral-spray"/></svg>
+    <svg class="floral-corner floral-bl"><use href="#floral-spray"/></svg>
     <p class="lugar-label reveal">Nos encontramos en</p>
     <p class="lugar-nombre display reveal">Villa Lagos</p>
     <p class="lugar-detalle reveal">La Garita, Alajuela</p>
@@ -570,6 +698,8 @@
 
   <!-- RSVP -->
   <section class="rsvp" id="rsvp">
+    <svg class="floral-corner floral-tr"><use href="#floral-spray"/></svg>
+    <svg class="floral-corner floral-bl"><use href="#floral-spray"/></svg>
     <p class="rsvp-msg reveal">Será un honor contar con tu presencia<br>en este día tan especial para nosotros.</p>
     <a class="rsvp-btn reveal"
        href="mailto:confirmaciones@correo.com?subject=Confirmación%20de%20asistencia%20-%20Boda%20Mariana%20%26%20Juan%20Carlos&body=Nombre%20completo%3A%0AN%C3%BAmero%20de%20invitados%3A%0A"
