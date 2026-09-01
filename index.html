@@ -285,6 +285,8 @@
     padding:0;
     overflow:hidden;
     position:relative;
+    justify-content:flex-start !important;
+    padding-top:7vh !important;
   }
   .hero-bg{
     position:absolute;
@@ -295,6 +297,7 @@
     width:100%;
     height:100%;
     object-fit:cover;
+    object-position:center 22%;
     filter:blur(2px) saturate(1.05) brightness(1.02);
     transform:scale(1.08);
   }
@@ -349,12 +352,12 @@
   }
   .detail-day{
     font-family:'EB Garamond', serif;
-    font-size:11px;
-    letter-spacing:.15em;
+    font-size:10.5px;
+    letter-spacing:.06em;
     text-transform:uppercase;
     color:var(--blue-dust);
-    writing-mode:horizontal-tb;
-    max-width:46px;
+    width:52px;
+    line-height:1.3;
   }
   .detail-date{
     display:flex;
@@ -461,7 +464,7 @@
 
   /* ---------- INVITADOS (personalizado) ---------- */
   /* ---------- FECHA / COUNTDOWN ---------- */
-  .fecha{background:var(--cream-deep);}
+  .fecha{background:linear-gradient(180deg, var(--cream-deep) 0%, var(--cream) 100%);}
   .fecha-label{
     font-family:'Great Vibes', cursive;
     font-style:italic;
@@ -508,7 +511,15 @@
   }
 
   /* ---------- LUGAR ---------- */
-  .lugar{background:linear-gradient(180deg, var(--cream-deep) 0%, var(--cream) 100%);}
+  .lugar{
+    background:none;
+    padding:0;
+    overflow:hidden;
+    position:relative;
+    justify-content:flex-start !important;
+    padding-top:7vh !important;
+  }
+  .lugar .hero-bg img{ object-position:center 30%; }
   .lugar-label{
     font-size:12px;
     letter-spacing:.3em;
@@ -544,7 +555,15 @@
   .map-btn:hover{background:var(--gold); color:var(--cream);}
 
   /* ---------- RSVP ---------- */
-  .rsvp{background:var(--cream);}
+  .rsvp{
+    background:none;
+    padding:0;
+    overflow:hidden;
+    position:relative;
+    justify-content:flex-start !important;
+    padding-top:7vh !important;
+  }
+  .rsvp .hero-bg img{ object-position:center 20%; }
   .rsvp-msg{
     font-family:'Great Vibes', cursive;
     font-size:24px;
@@ -684,7 +703,7 @@
           <span class="d-num">27</span>
           <span class="d-mid"><span class="d-month">Diciembre</span><span class="d-year">2026</span></span>
         </div>
-        <div class="detail-time">3:00<br>p.m.</div>
+        <div class="detail-time">2:30<br>p.m.</div>
       </div>
 
       <p class="invite-venue">Villa Lagos, Alajuela, La Garita</p>
@@ -700,45 +719,54 @@
 
   <!-- FECHA -->
   <section class="fecha" id="fecha">
-    <p class="fecha-label reveal">Hay fechas que cambian la vida.<br>La nuestra es el</p>
-    <p class="fecha-dia display reveal">Domingo 27 de diciembre de 2026</p>
-    <p class="fecha-hora reveal">3:00 p.m.</p>
+    <div class="invite-card reveal">
+      <svg class="mini-floral corner-tl" viewBox="0 0 90 90"><use href="#mini-floral-spray"/></svg>
+      <svg class="mini-floral corner-br" viewBox="0 0 90 90"><use href="#mini-floral-spray"/></svg>
 
-    <div class="countdown reveal" id="countdown">
-      <div class="cd-item"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Días</span></div>
-      <div class="cd-item"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Horas</span></div>
-      <div class="cd-item"><span class="cd-num" id="cd-min">00</span><span class="cd-label">Min</span></div>
-      <div class="cd-item"><span class="cd-num" id="cd-sec">00</span><span class="cd-label">Seg</span></div>
+      <p class="fecha-label">Hay fechas que cambian la vida.<br>La nuestra es el</p>
+      <p class="fecha-dia display">Domingo 27 de diciembre de 2026</p>
+      <p class="fecha-hora">2:30 p.m.</p>
+
+      <div class="countdown" id="countdown">
+        <div class="cd-item"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Días</span></div>
+        <div class="cd-item"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Horas</span></div>
+        <div class="cd-item"><span class="cd-num" id="cd-min">00</span><span class="cd-label">Min</span></div>
+        <div class="cd-item"><span class="cd-num" id="cd-sec">00</span><span class="cd-label">Seg</span></div>
+      </div>
     </div>
   </section>
 
   <!-- LUGAR -->
   <section class="lugar" id="lugar">
-    <p class="lugar-label reveal">Nos encontramos en</p>
-    <p class="lugar-nombre display reveal">Villa Lagos</p>
-    <p class="lugar-detalle reveal">La Garita, Alajuela</p>
-    <a class="map-btn reveal"
-       href="https://www.google.com/maps/search/?api=1&query=Villa+Lagos+La+Garita+Alajuela"
-       target="_blank" rel="noopener">Ver ubicación</a>
+    <div class="hero-bg"><img src="images/lugar-globo-aerostatico.jpg" alt="Mariana y Juan Carlos en globo aerostático"></div>
+    <div class="hero-bg-overlay"></div>
 
-    <div class="photo-wrap reveal">
-      <div class="photo-frame">
-        <div class="photo-inner"><img src="images/lugar-globo-aerostatico.jpg" alt="Mariana y Juan Carlos en globo aerostático"></div>
-      </div>
+    <div class="invite-card reveal">
+      <svg class="mini-floral corner-tl" viewBox="0 0 90 90"><use href="#mini-floral-spray"/></svg>
+      <svg class="mini-floral corner-br" viewBox="0 0 90 90"><use href="#mini-floral-spray"/></svg>
+
+      <p class="lugar-label">Nos encontramos en</p>
+      <p class="lugar-nombre display">Villa Lagos</p>
+      <p class="lugar-detalle">La Garita, Alajuela</p>
+      <a class="map-btn"
+         href="https://www.google.com/maps/search/?api=1&query=Villa+Lagos+La+Garita+Alajuela"
+         target="_blank" rel="noopener">Ver ubicación</a>
     </div>
   </section>
 
   <!-- RSVP -->
   <section class="rsvp" id="rsvp">
-    <p class="rsvp-msg reveal">Será un honor contar con tu presencia<br>en este día tan especial para nosotros.</p>
-    <a class="rsvp-btn reveal"
-       href="mailto:confirmaciones@correo.com?subject=Confirmación%20de%20asistencia%20-%20Boda%20Mariana%20%26%20Juan%20Carlos&body=Nombre%20completo%3A%0AN%C3%BAmero%20de%20invitados%3A%0A"
-       >Confirmar asistencia</a>
+    <div class="hero-bg"><img src="images/rsvp-guatemala.jpg" alt="Mariana y Juan Carlos en Guatemala"></div>
+    <div class="hero-bg-overlay"></div>
 
-    <div class="photo-wrap reveal">
-      <div class="photo-frame">
-        <div class="photo-inner"><img src="images/rsvp-guatemala.jpg" alt="Mariana y Juan Carlos en Guatemala"></div>
-      </div>
+    <div class="invite-card reveal">
+      <svg class="mini-floral corner-tl" viewBox="0 0 90 90"><use href="#mini-floral-spray"/></svg>
+      <svg class="mini-floral corner-br" viewBox="0 0 90 90"><use href="#mini-floral-spray"/></svg>
+
+      <p class="rsvp-msg">Será un honor contar con tu presencia<br>en este día tan especial para nosotros.</p>
+      <a class="rsvp-btn"
+         href="mailto:confirmaciones@correo.com?subject=Confirmación%20de%20asistencia%20-%20Boda%20Mariana%20%26%20Juan%20Carlos&body=Nombre%20completo%3A%0AN%C3%BAmero%20de%20invitados%3A%0A"
+         >Confirmar asistencia</a>
     </div>
 
     <footer class="reveal">Juan Carlos &amp; Mariana · 27.12.2026</footer>
@@ -830,7 +858,7 @@
   revealEls.forEach(el=>io.observe(el));
 
   // ---- Countdown ----
-  const target = new Date('2026-12-27T15:00:00-06:00').getTime();
+  const target = new Date('2026-12-27T14:30:00-06:00').getTime();
   function pad(n){ return String(n).padStart(2,'0'); }
   function tick(){
     const now = Date.now();
